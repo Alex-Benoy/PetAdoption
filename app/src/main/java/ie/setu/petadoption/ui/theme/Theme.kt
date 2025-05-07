@@ -37,6 +37,9 @@ private val LightColorScheme = lightColorScheme(
 val startGradientColor = Color(0xFFB2EBF2) // Light Cyan
 val endGradientColor = Color(0xFF80DEEA)
 
+val gStartGradientColor = Color(0xFF013B6E)
+val gEndGradientColor = Color(0xFF2189EB)
+
 @Composable
 fun PetAdoptionTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),

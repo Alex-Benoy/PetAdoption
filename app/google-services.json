@@ -12,7 +12,20 @@
           "package_name": "ie.setu.petadoption"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "554656188424-l2it6171167lgml86k4lqc1465744lhg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ie.setu.petadoption",
+            "certificate_hash": "b5908bd3e4e7199e017722f5e62d7c9c694c31de"
+          }
+        },
+        {
+          "client_id": "554656188424-v6piajmemumhth2oj6pnmpmckdbvf0ap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCTY_LfqNcom2-I9_Q-ljZS9kiiM2FU8Zo"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "554656188424-v6piajmemumhth2oj6pnmpmckdbvf0ap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Logout
 import androidx.compose.material.icons.filled.Logout
@@ -23,6 +22,7 @@ import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -64,6 +64,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import ie.setu.petadoption.R
+import ie.setu.petadoption.data.rules.Constants.SIGN_IN_WITH_GOOGLE
 import ie.setu.petadoption.ui.theme.*
 
 @Preview
@@ -75,6 +76,59 @@ fun DonationCardPreview() {
             HeadingLogoComponent()
             CheckboxComponent(value = "My Text", onTextSelected = {}, onCheckedChange ={} )
         }
+    }
+}
+
+@Composable
+fun GoogleSignInButtonComponent(onButtonClicked: () -> Unit) {
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(48.dp),
+        onClick = {
+            onButtonClicked.invoke()
+        },
+        contentPadding = PaddingValues(),
+        colors = ButtonDefaults.buttonColors(Color.Transparent),
+        shape = RoundedCornerShape(50.dp),
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(48.dp)
+                .background(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(
+                            gStartGradientColor,
+                            gEndGradientColor,
+                        )
+                    ),
+                    shape = RoundedCornerShape(50.dp)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            Row {
+                Column {
+
+                    Image(
+                        modifier = Modifier.padding(end = 40.dp),
+                        painter = painterResource(
+                            id = R.drawable.ic_google_logo
+                        ),
+                        contentDescription = null
+                    )
+                }
+                Text(
+                    text = SIGN_IN_WITH_GOOGLE,
+                    fontSize = 18.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    fontStyle = FontStyle.Italic,
+                    modifier = Modifier.padding(end = 40.dp)
+                )
+            }
+        }
+
     }
 }
 
@@ -195,10 +249,10 @@ fun PasswordTextFieldComponent(
             .fillMaxWidth()
             .clip(RoundedCornerShape(4.dp)),
         label = { Text(text = labelValue) },
-        colors = TextFieldDefaults.outlinedTextFieldColors(
+        colors = OutlinedTextFieldDefaults.colors(
+            cursorColor = MaterialTheme.colorScheme.secondary,
             focusedBorderColor = MaterialTheme.colorScheme.secondary,
             focusedLabelColor = MaterialTheme.colorScheme.secondary,
-            cursorColor = MaterialTheme.colorScheme.secondary,
         ),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Password,
@@ -354,12 +408,12 @@ fun DividerTextComponent() {
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Divider(
+        HorizontalDivider(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
-            color = Color.Gray,
-            thickness = 1.dp
+            thickness = 1.dp,
+            color = Color.Gray
         )
 
         Text(
@@ -368,12 +422,12 @@ fun DividerTextComponent() {
             fontSize = 18.sp,
             color = Color.Black
         )
-        Divider(
+        HorizontalDivider(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
-            color = Color.Gray,
-            thickness = 1.dp
+            thickness = 1.dp,
+            color = Color.Gray
         )
     }
 }

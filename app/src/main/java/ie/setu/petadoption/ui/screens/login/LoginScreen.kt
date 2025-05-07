@@ -97,7 +97,7 @@ fun LoginScreen(
                 Spacer(modifier = Modifier.height(10.dp))
                 val context = LocalContext.current
                 GoogleSignInButtonComponent {
-//                    loginViewModel.signInWithGoogleCredentials(context)
+                    loginViewModel.signInWithGoogleCredentials(context)
                 }
             }
         }

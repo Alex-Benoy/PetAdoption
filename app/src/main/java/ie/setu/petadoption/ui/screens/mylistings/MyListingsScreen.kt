@@ -16,6 +16,7 @@ import ie.setu.petadoption.data.model.PetAdoptionModel
 import ie.setu.petadoption.ui.components.general.ShowLoader
 import ie.setu.petadoption.ui.components.listings.ListingCardList
 import ie.setu.petadoption.firebase.services.AuthService
+import ie.setu.petadoption.ui.components.mylistings.MyListingsCardList
 import ie.setu.petadoption.ui.screens.listings.ListingsViewModel
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -59,19 +60,18 @@ fun MyListingsScreen(modifier: Modifier = Modifier,
             }
 
             if (!isError && listings.isNotEmpty()) {
-                ListingCardList(
+                MyListingsCardList(
                     listings = listings,
-
-//                    onDeleteListing = { listing ->
-//                        listingViewModel.updateListing(listing.copy(petName = "[Deleted]"))
-//                        listings = listings.filter { it._id != listing._id }
-//                    },
-//                    onClickListingDetails = { id ->
+                    onDeleteListing = { adoption: PetAdoptionModel ->
+                        myListingsViewModel.deleteListing(adoption)
+                    },
+                    onClickListingDetails = {
+//                        id ->
 //                        onListingClicked(id)
-//                    },
-//                    onRefreshList = {
+                    },
+                    onRefreshList = {
 //                        listings = listOf(viewModel.listing.value)
-//                    }
+                    }
                 )
             }
 

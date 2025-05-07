@@ -66,8 +66,8 @@ class FirestoreRepository
 
     override suspend fun delete(email: String,
                                 adoptionId: String) {
-//        firestore.collection(DONATION_COLLECTION)
-//            .document(donationId)
-//            .delete().await()
+        firestore.collection(ADOPTION_COLLECTION)
+            .document(adoptionId)
+            .delete().await()
     }
 }

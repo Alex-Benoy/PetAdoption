@@ -58,6 +58,11 @@ class MyListingsViewModel @Inject constructor(
             }
         }
     }
+    fun deleteListing(adoption: PetAdoptionModel)
+            = viewModelScope.launch {
+        repository.delete(authService.email!!, adoption._id)
+
+    }
 
 //    fun updateListing(updatedListing: PetAdoptionModel) {
 //        viewModelScope.launch {

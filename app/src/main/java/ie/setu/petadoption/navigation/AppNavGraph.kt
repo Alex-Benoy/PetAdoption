@@ -7,21 +7,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import ie.setu.petadoption.ui.screens.details.DetailsScreen
+import ie.setu.petadoption.ui.screens.home.HomeScreen
 import ie.setu.petadoption.ui.screens.listings.ListingsScreen
 import ie.setu.petadoption.ui.screens.listnew.ListNewScreen
 import ie.setu.petadoption.ui.screens.login.LoginScreen
 import ie.setu.petadoption.ui.screens.mylistings.MyListingsScreen
 import ie.setu.petadoption.ui.screens.profile.ProfileScreen
 import ie.setu.petadoption.ui.screens.register.RegisterScreen
-
-//import ie.setu.donationx.ui.screens.about.AboutScreen
-//import ie.setu.donationx.ui.screens.details.DetailsScreen
-//import ie.setu.donationx.ui.screens.donate.DonateScreen
-//import ie.setu.donationx.ui.screens.home.HomeScreen
-//import ie.setu.donationx.ui.screens.login.LoginScreen
-//import ie.setu.donationx.ui.screens.profile.ProfileScreen
-//import ie.setu.donationx.ui.screens.register.RegisterScreen
-//import ie.setu.donationx.ui.screens.report.ReportScreen
 
 @Composable
 fun NavHostProvider(
@@ -42,10 +35,10 @@ fun NavHostProvider(
 
         composable(route = Home.route) {
             //call our 'Home' Screen Here
-//            HomeScreen(modifier = modifier)
+            HomeScreen(modifier = modifier)
         }
         composable(route = Listings.route) {
-            //call our 'Report' Screen Here
+//            call our 'Report' Screen Here
             ListingsScreen(modifier = modifier,
 //                onClickDonationDetails = {
 //                        donationId : String ->
@@ -55,7 +48,12 @@ fun NavHostProvider(
         }
         composable(route = MyListing.route) {
             //call our 'About' Screen Here
-            MyListingsScreen(modifier = modifier)
+            MyListingsScreen(modifier = modifier,
+                onClickListingDetails = {
+                    adoptionId: String ->
+                    navController.navigateToAdoptionDetails(adoptionId)
+                },
+            )
         }
 
         composable(route = Login.route) {
@@ -81,7 +79,7 @@ fun NavHostProvider(
         { navBackStackEntry ->
             val id = navBackStackEntry.arguments?.getString(Details.idArg)
             if (id != null) {
-                ListingsScreen(modifier = modifier)
+                DetailsScreen(modifier = modifier)
             }
         }
 
@@ -98,7 +96,7 @@ fun NavHostProvider(
     }
 }
 
-private fun NavHostController.navigateToDonationDetails(donationId: String) {
-    this.navigate("details/$donationId")
+private fun NavHostController.navigateToAdoptionDetails(adoptionId: String) {
+    this.navigate("details/$adoptionId")
 }
 

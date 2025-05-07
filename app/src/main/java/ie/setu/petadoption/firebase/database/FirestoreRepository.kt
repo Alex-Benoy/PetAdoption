@@ -56,12 +56,12 @@ class FirestoreRepository
 
     override suspend fun update(email: String,
                                 petAdoption: PetAdoption) {
-//        val donationWithModifiedDate =
-//            donation.copy(dateModified = Date())
-//
-//        firestore.collection(DONATION_COLLECTION)
-//            .document(donation._id)
-//            .set(donationWithModifiedDate).await()
+        val listingWithModifiedDate =
+            petAdoption.copy(dateModified = Date())
+
+        firestore.collection(ADOPTION_COLLECTION)
+            .document(petAdoption._id)
+            .set(listingWithModifiedDate).await()
     }
 
     override suspend fun delete(email: String,

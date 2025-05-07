@@ -24,6 +24,7 @@ import timber.log.Timber
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyListingsScreen(modifier: Modifier = Modifier,
+                     onClickListingDetails: (String) -> Unit,
                      myListingsViewModel: MyListingsViewModel = hiltViewModel()
 
 ) {
@@ -65,10 +66,7 @@ fun MyListingsScreen(modifier: Modifier = Modifier,
                     onDeleteListing = { adoption: PetAdoptionModel ->
                         myListingsViewModel.deleteListing(adoption)
                     },
-                    onClickListingDetails = {
-//                        id ->
-//                        onListingClicked(id)
-                    },
+                    onClickListingDetails = onClickListingDetails,
                     onRefreshList = {
 //                        listings = listOf(viewModel.listing.value)
                     }

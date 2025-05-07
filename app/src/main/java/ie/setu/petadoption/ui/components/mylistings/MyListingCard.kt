@@ -63,7 +63,7 @@ fun MyListingCard(
     dateModified: String,
     imageUrl: String,
     onClickDelete: () -> Unit,
-    onClickDetails: () -> Unit,
+    onClickListingDetails: () -> Unit,
     onRefreshList: () -> Unit
 ) {
     Card(
@@ -85,7 +85,7 @@ fun MyListingCard(
             dateModified,
             imageUrl,
             onClickDelete,
-            onClickDetails,
+            onClickListingDetails,
             onRefreshList
         )
     }
@@ -102,7 +102,7 @@ private fun MyListingCardContent(
     dateModified: String,
     imageUrl: String,
     onClickDelete: () -> Unit,
-    onClickDetails: () -> Unit,
+    onClickListingDetails: () -> Unit,
     onRefreshList: () -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
@@ -152,19 +152,20 @@ private fun MyListingCardContent(
                 )
             }
 
+
+            Text(text = "Posted: $datePosted", style = MaterialTheme.typography.labelSmall)
+            Text(text = "Modified: $dateModified", style = MaterialTheme.typography.labelSmall)
+
             if (expanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "Details: $details", style = MaterialTheme.typography.bodySmall)
                 Text(text = "Owner: $ownerName", style = MaterialTheme.typography.bodySmall)
-                Text(text = "Email: $email", style = MaterialTheme.typography.bodySmall)
-                Text(text = "Posted: $datePosted", style = MaterialTheme.typography.labelSmall)
-                Text(text = "Modified: $dateModified", style = MaterialTheme.typography.labelSmall)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    FilledTonalButton(onClick = onClickDetails) {
+                    FilledTonalButton(onClick = onClickListingDetails) {
                         Text("Update")
                     }
                     FilledTonalIconButton(onClick = { showDeleteConfirmDialog = true }) {

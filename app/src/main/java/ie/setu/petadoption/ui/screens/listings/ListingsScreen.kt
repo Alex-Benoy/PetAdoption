@@ -50,6 +50,8 @@ fun ListingsScreen(modifier: Modifier = Modifier,
             modifier = modifier
                 .padding(start = 24.dp, end = 24.dp)
         ) {
+            Spacer(modifier = Modifier.height(16.dp))
+
             // Pet type filter dropdown
             Row(
                 verticalAlignment = Alignment.CenterVertically,

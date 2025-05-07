@@ -34,7 +34,7 @@ fun MyListingsCardList(
                 dateModified = DateFormat.getDateTimeInstance().format(listing.dateModified),
                 imageUrl = listing.imageUrl,
                 onClickDelete = { onDeleteListing(listing) },
-                onClickDetails = { onClickListingDetails(listing._id) },
+                onClickListingDetails = { onClickListingDetails(listing._id) },
                 onRefreshList = onRefreshList
             )
         }

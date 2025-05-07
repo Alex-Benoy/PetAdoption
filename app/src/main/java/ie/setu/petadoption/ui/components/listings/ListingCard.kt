@@ -152,13 +152,14 @@ private fun ListingCardContent(
                 )
             }
 
+            Text(text = "Posted: $datePosted", style = MaterialTheme.typography.labelSmall)
+            Text(text = "Modified: $dateModified", style = MaterialTheme.typography.labelSmall)
+
             if (expanded) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "Details: $details", style = MaterialTheme.typography.bodySmall)
                 Text(text = "Owner: $ownerName", style = MaterialTheme.typography.bodySmall)
                 Text(text = "Email: $email", style = MaterialTheme.typography.bodySmall)
-                Text(text = "Posted: $datePosted", style = MaterialTheme.typography.labelSmall)
-                Text(text = "Modified: $dateModified", style = MaterialTheme.typography.labelSmall)
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),

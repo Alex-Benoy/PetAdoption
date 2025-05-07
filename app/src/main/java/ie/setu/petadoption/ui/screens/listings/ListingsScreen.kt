@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ie.setu.petadoption.R
 import ie.setu.petadoption.ui.components.general.ShowLoader
+import ie.setu.petadoption.ui.components.listings.DropdownMenuBox
 import ie.setu.petadoption.ui.components.listings.ListingCardList
 import timber.log.Timber
 
@@ -27,6 +28,21 @@ fun ListingsScreen(modifier: Modifier = Modifier,
     val isError = listingViewModel.iserror.value
     val error = listingViewModel.error.value
 
+    var selectedPetType by remember { mutableStateOf("All") }
+
+    // Get unique pet types and add "All"
+    val petTypes = remember(listings) {
+        listOf("All") + listings.map { it.petType }.distinct()
+    }
+
+    val filteredListings = remember(selectedPetType, listings) {
+        if (selectedPetType == "All") listings
+        else listings.filter {
+            // Normalize both sides for comparison (trim whitespace and ignore case)
+            it.petType.trim().equals(selectedPetType.trim(), ignoreCase = true)
+        }
+    }
+
     Timber.i("RS : List = $listings")
 
     Column {
@@ -34,6 +50,22 @@ fun ListingsScreen(modifier: Modifier = Modifier,
             modifier = modifier
                 .padding(start = 24.dp, end = 24.dp)
         ) {
+            // Pet type filter dropdown
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("Filter by Pet Type:", style = MaterialTheme.typography.bodyLarge)
+                DropdownMenuBox(
+                    options = petTypes,
+                    selectedOption = selectedPetType,
+                    onOptionSelected = { selectedPetType = it }
+                )
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
             if (isLoading) {
                 ShowLoader("Loading Listings...")
             }
@@ -55,7 +87,7 @@ fun ListingsScreen(modifier: Modifier = Modifier,
 
             if (!isError && listings.isNotEmpty()) {
                 ListingCardList(
-                    listings = listings,
+                    listings = filteredListings,
 //                    onDeleteListing = { listing ->
 //                        listingViewModel.updateListing(listing.copy(petName = "[Deleted]"))
 //                        listings = listings.filter { it._id != listing._id }

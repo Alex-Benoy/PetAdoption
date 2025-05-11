@@ -32,7 +32,7 @@ The app integrates with Firebase to handle:
 1. Repository:
    ```bash
    https://github.com/Alex-Benoy/PetAdoption.git
-
+   ```
 
 ### MVVM Class Diagram
 

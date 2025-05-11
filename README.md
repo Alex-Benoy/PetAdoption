@@ -36,8 +36,8 @@ The app integrates with Firebase to handle:
 
 ### MVVM Class Diagram
 
-![MVVM Class Diagram](assets/UML-Diagram.png)
+![MVVM Class Diagram](Assets/UML-Diagram.png)
 
 ### Screen Flow  Diagram
 
-![Screen Flow Diagram](assets/Flow.png)
+![Screen Flow Diagram](Assets/Flow.png)
